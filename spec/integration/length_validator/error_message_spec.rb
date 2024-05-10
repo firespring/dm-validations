@@ -13,7 +13,7 @@ describe 'DataMapper::Validations::Fixtures::Jabberwock' do
       @model.snickersnack = nil
     end
 
-    it_should_behave_like "invalid model"
+    it_behaves_like 'invalid model'
 
     it "has custom error message" do
       @model.errors.on(:snickersnack).should == [ 'worble warble' ]

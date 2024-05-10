@@ -91,11 +91,11 @@ describe 'C' do
                                                                        )
   end
 
-  it_should_behave_like 'a good fit for kernel hacking'
+  it_behaves_like 'a good fit for kernel hacking'
 
-  it_should_behave_like 'a good fit for game engine core'
+  it_behaves_like 'a good fit for game engine core'
 
-  it_should_behave_like 'a poor candidate for DSLs'
+  it_behaves_like 'a poor candidate for DSLs'
 end
 
 
@@ -114,11 +114,11 @@ describe 'C++' do
                                                                        )
   end
 
-  it_should_behave_like 'a poor candidate for kernel hacking'
+  it_behaves_like 'a poor candidate for kernel hacking'
 
-  it_should_behave_like 'a good fit for game engine core'
+  it_behaves_like 'a good fit for game engine core'
 
-  it_should_behave_like 'a poor candidate for DSLs'
+  it_behaves_like 'a poor candidate for DSLs'
 
   it 'is not approved by Linus' do
     @model.valid?(:hacking_on_the_kernel)
@@ -143,11 +143,11 @@ describe 'Ruby' do
                                                                        )
   end
 
-  it_should_behave_like 'a good fit for DSLs'
+  it_behaves_like 'a good fit for DSLs'
 
-  it_should_behave_like 'a poor candidate for kernel hacking'
+  it_behaves_like 'a poor candidate for kernel hacking'
 
-  it_should_behave_like 'a poor candidate for game engine core'
+  it_behaves_like 'a poor candidate for game engine core'
 
   it 'has a (more or less) meaningful error message' do
     @model.valid?(:doing_system_programming)
@@ -170,11 +170,11 @@ describe 'Scala' do
                                                                        )
   end
 
-  it_should_behave_like 'a good fit for DSLs'
+  it_behaves_like 'a good fit for DSLs'
 
-  it_should_behave_like 'a poor candidate for kernel hacking'
+  it_behaves_like 'a poor candidate for kernel hacking'
 
-  it_should_behave_like 'a poor candidate for game engine core'
+  it_behaves_like 'a poor candidate for game engine core'
 
   it 'has a (more or less) meaningful error message' do
     @model.valid?(:doing_system_programming)
@@ -203,11 +203,11 @@ describe 'Haskell' do
     )
   end
 
-  it_should_behave_like 'a good fit for DSLs'
+  it_behaves_like 'a good fit for DSLs'
 
-  it_should_behave_like 'a poor candidate for kernel hacking'
+  it_behaves_like 'a poor candidate for kernel hacking'
 
-  it_should_behave_like 'a poor candidate for game engine core'
+  it_behaves_like 'a poor candidate for game engine core'
 
   it 'has a (more or less) meaningful error message' do
     @model.valid?(:doing_system_programming)
@@ -229,7 +229,7 @@ describe 'DataMapper::Validations::Fixtures::Event' do
       @model.ends_at   = DateTime.new(2009, 4, 1, 23, 59, 59)
     end
 
-    it_should_behave_like 'valid model'
+    it_behaves_like 'valid model'
   end
 
   describe 'with start time after end time' do
@@ -238,7 +238,7 @@ describe 'DataMapper::Validations::Fixtures::Event' do
       @model.ends_at   = DateTime.new(2009, 4, 1, 00, 00, 01)
     end
 
-    it_should_behave_like 'invalid model'
+    it_behaves_like 'invalid model'
 
     it 'uses custom error message for property starts_at' do
       @model.errors.on(:starts_at).should == [ 'Start time cannot be after end time' ]

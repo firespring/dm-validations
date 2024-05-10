@@ -40,6 +40,6 @@ describe 'SailBoat' do
     end
 
     # has validates_is_present for name thanks to :required => true
-    it_should_behave_like "valid model"
+    it_behaves_like 'valid model'
   end
 end

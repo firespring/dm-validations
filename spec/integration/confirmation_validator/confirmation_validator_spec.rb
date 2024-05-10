@@ -31,8 +31,8 @@ describe 'DataMapper::Validations::Fixtures::Reservation' do
       @model.person_name = "mismatch"
     end
 
-    it_should_behave_like "invalid model"
-    it_should_behave_like "reservation with mismatched person name"
+    it_behaves_like 'invalid model'
+    it_behaves_like 'reservation with mismatched person name'
   end
 
 
@@ -41,8 +41,8 @@ describe 'DataMapper::Validations::Fixtures::Reservation' do
       @model.person_name = ""
     end
 
-    it_should_behave_like "invalid model"
-    it_should_behave_like "reservation with mismatched person name"
+    it_behaves_like 'invalid model'
+    it_behaves_like 'reservation with mismatched person name'
   end
 
 
@@ -51,8 +51,8 @@ describe 'DataMapper::Validations::Fixtures::Reservation' do
       @model.person_name = nil
     end
 
-    it_should_behave_like "invalid model"
-    it_should_behave_like "reservation with mismatched person name"
+    it_behaves_like 'invalid model'
+    it_behaves_like 'reservation with mismatched person name'
   end
 
 
@@ -61,8 +61,8 @@ describe 'DataMapper::Validations::Fixtures::Reservation' do
       @model.number_of_seats  = -1
     end
 
-    it_should_behave_like "invalid model"
-    it_should_behave_like "reservation with mismatched seats number"
+    it_behaves_like 'invalid model'
+    it_behaves_like 'reservation with mismatched seats number'
   end
 
 
@@ -71,6 +71,6 @@ describe 'DataMapper::Validations::Fixtures::Reservation' do
       @model.number_of_seats = nil
     end
 
-    it_should_behave_like "valid model"
+    it_behaves_like 'valid model'
   end
 end

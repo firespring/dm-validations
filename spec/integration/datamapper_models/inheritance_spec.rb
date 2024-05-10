@@ -25,7 +25,7 @@ describe 'DataMapper::Validations::Fixtures::ServiceCompany' do
       @model.area_of_expertise = nil
     end
 
-    it_should_behave_like "invalid model"
+    it_behaves_like 'invalid model'
 
     it "has a meaningful error message for own property" do
       @model.errors.on(:area_of_expertise).should == [ 'Area of expertise must not be blank' ]
@@ -43,14 +43,14 @@ describe 'DataMapper::Validations::Fixtures::ProductCompany' do
     @model.valid?
   end
 
-  it_should_behave_like "valid model"
+  it_behaves_like 'valid model'
 
   describe "without title" do
     before :all do
       @model.title = nil
     end
 
-    it_should_behave_like "invalid model"
+    it_behaves_like 'invalid model'
 
     it "has error message from the subclass itself" do
       @model.errors.on(:title).should include('Product company must have a name')
@@ -73,7 +73,7 @@ describe 'DataMapper::Validations::Fixtures::ProductCompany' do
       @model.flagship_product = nil
     end
 
-    it_should_behave_like "invalid model"
+    it_behaves_like 'invalid model'
 
     it "has a meaningful error message for own property" do
       @model.errors.on(:flagship_product).should == [ 'Flagship product must not be blank' ]

@@ -26,7 +26,7 @@ describe 'DataMapper::Validations::Fixtures::BillOfLading' do
         @model = DataMapper::Validations::Fixtures::BillOfLading.new(valid_attributes.merge(:url => uri))
       end
 
-      it_should_behave_like "invalid model"
+      it_behaves_like 'invalid model'
 
       it "has a meaningful error message" do
         @model.errors.on(:url).should == [ 'Url has an invalid format' ]
@@ -41,7 +41,7 @@ describe 'DataMapper::Validations::Fixtures::BillOfLading' do
         @model = DataMapper::Validations::Fixtures::SurrenderBillOfLading.new(valid_attributes.merge(:bank_url => uri))
       end
 
-      it_should_behave_like "invalid model"
+      it_behaves_like 'invalid model'
 
       it "has a meaningful error message" do
         @model.errors.on(:bank_url).should == [ 'Bank url has an invalid format' ]
@@ -77,15 +77,15 @@ describe 'DataMapper::Validations::Fixtures::BillOfLading' do
        @model = DataMapper::Validations::Fixtures::BillOfLading.new(valid_attributes.merge(:url => uri))
      end
 
-     it_should_behave_like "valid model"
-   end
+      it_behaves_like 'valid model'
+    end
 
    describe "with dm-type URI of #{uri.inspect}" do
      before(:all) do
        @model = DataMapper::Validations::Fixtures::SurrenderBillOfLading.new(valid_attributes.merge(:bank_url => uri))
      end
 
-     it_should_behave_like "valid model"
-   end
- end
+      it_behaves_like 'valid model'
+    end
+  end
 end

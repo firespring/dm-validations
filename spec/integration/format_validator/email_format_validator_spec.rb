@@ -48,7 +48,7 @@ describe 'DataMapper::Validations::Fixtures::BillOfLading' do
         @model = DataMapper::Validations::Fixtures::BillOfLading.new(valid_attributes.merge(:email => email))
       end
 
-      it_should_behave_like "invalid model"
+      it_behaves_like 'invalid model'
     end
   end
 
