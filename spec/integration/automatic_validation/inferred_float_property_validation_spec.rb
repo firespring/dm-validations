@@ -1,5 +1,5 @@
-require 'spec_helper'
-require 'integration/automatic_validation/spec_helper'
+require_relative '../../spec_helper'
+require_relative 'spec_helper'
 
 
 { :float => Float, :big_decimal => BigDecimal }.each do |column, type|
@@ -15,7 +15,7 @@ require 'integration/automatic_validation/spec_helper'
         @model.attributes = {column => 1}
       end
 
-      it_should_behave_like "valid model"
+      it_behaves_like "valid model"
     end
 
     describe "with a float value" do
@@ -23,7 +23,7 @@ require 'integration/automatic_validation/spec_helper'
         @model.attributes = {column => 1.0}
       end
 
-      it_should_behave_like "valid model"
+      it_behaves_like "valid model"
     end
 
     describe "with a BigDecimal value" do
@@ -31,7 +31,7 @@ require 'integration/automatic_validation/spec_helper'
         @model.attributes = {column => BigDecimal('1')}
       end
 
-      it_should_behave_like "valid model"
+      it_behaves_like "valid model"
     end
 
     describe "with an uncoercible value" do
@@ -39,7 +39,7 @@ require 'integration/automatic_validation/spec_helper'
         @model.attributes = {column => "foo"}
       end
 
-      it_should_behave_like "invalid model"
+      it_behaves_like "invalid model"
     end
   end
 end

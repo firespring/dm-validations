@@ -1,5 +1,5 @@
-require 'spec_helper'
-require 'integration/format_validator/spec_helper'
+require_relative '../../spec_helper'
+require_relative 'spec_helper'
 
 describe 'DataMapper::Validations::Fixtures::BillOfLading' do
   before :all do
@@ -27,7 +27,7 @@ describe 'DataMapper::Validations::Fixtures::BillOfLading' do
     it_behaves_like 'invalid model'
 
     it "has a meaningful error message" do
-      @model.errors.on(:code).should  == [ 'Code format is invalid' ]
+      expect(@model.errors.on(:code)).to eq [ 'Code format is invalid' ]
     end
   end
 end

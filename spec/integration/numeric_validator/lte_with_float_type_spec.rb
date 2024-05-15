@@ -1,5 +1,5 @@
-require 'spec_helper'
-require 'integration/numeric_validator/spec_helper'
+require_relative '../../spec_helper'
+require_relative 'spec_helper'
 
 describe 'DataMapper::Validations::Fixtures::BasketballCourt' do
   before :all do
@@ -31,7 +31,7 @@ describe 'DataMapper::Validations::Fixtures::BasketballCourt' do
     it_behaves_like 'invalid model'
 
     it "has a meaningful error message" do
-      @model.errors.on(:length).should == [ 'Length must be less than or equal to 15.24' ]
+      expect(@model.errors.on(:length)).to eq [ 'Length must be less than or equal to 15.24' ]
     end
   end
 end

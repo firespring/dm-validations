@@ -1,5 +1,5 @@
-require 'spec_helper'
-require 'integration/primitive_validator/spec_helper'
+require_relative '../../spec_helper'
+require_relative 'spec_helper'
 
 describe 'DataMapper::Validations::Fixtures::MemoryObject' do
   include DataMapper::Validations::Fixtures
@@ -16,7 +16,7 @@ describe 'DataMapper::Validations::Fixtures::MemoryObject' do
     end
 
     it "is valid" do
-      @model.should be_valid
+      expect(@model).to be_valid
     end
   end
 
@@ -30,7 +30,7 @@ describe 'DataMapper::Validations::Fixtures::MemoryObject' do
     end
 
     it "is NOT valid" do
-      @model.should_not be_valid
+      expect(@model).not_to be_valid
     end
   end
 
@@ -40,7 +40,7 @@ describe 'DataMapper::Validations::Fixtures::MemoryObject' do
     end
 
     it "is valid" do
-      @model.should be_valid
+      expect(@model).to be_valid
     end
   end
 
@@ -50,7 +50,7 @@ describe 'DataMapper::Validations::Fixtures::MemoryObject' do
     end
 
     it "is NOT valid" do
-      @model.should_not be_valid
+      expect(@model).not_to be_valid
     end
   end
 
@@ -61,7 +61,7 @@ describe 'DataMapper::Validations::Fixtures::MemoryObject' do
     end
 
     it "is valid" do
-      @model.should be_valid
+      expect(@model).to be_valid
     end
   end
 
@@ -72,7 +72,7 @@ describe 'DataMapper::Validations::Fixtures::MemoryObject' do
     end
 
     it "is valid" do
-      @model.should be_valid
+      expect(@model).to be_valid
     end
   end
 
@@ -83,7 +83,7 @@ describe 'DataMapper::Validations::Fixtures::MemoryObject' do
     end
 
     it "is NOT valid" do
-      @model.should_not be_valid
+      expect(@model).not_to be_valid
     end
   end
 
@@ -95,7 +95,7 @@ describe 'DataMapper::Validations::Fixtures::MemoryObject' do
     end
 
     it "is valid" do
-      @model.should be_valid
+      expect(@model).to be_valid
     end
   end
 
@@ -106,7 +106,7 @@ describe 'DataMapper::Validations::Fixtures::MemoryObject' do
     end
 
     it "is valid" do
-      @model.should be_valid
+      expect(@model).to be_valid
     end
   end
 end

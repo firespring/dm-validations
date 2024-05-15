@@ -1,4 +1,4 @@
-require 'spec_helper'
+require_relative '../../spec_helper'
 
 describe 'DataMapper::Validations::Fixtures::ServiceCompany' do
   before :all do
@@ -13,10 +13,10 @@ describe 'DataMapper::Validations::Fixtures::ServiceCompany' do
       @model.title = nil
     end
 
-    it_should_behave_like "invalid model"
+    it_behaves_like 'invalid model'
 
     it "has a meaningful error message for inherited property" do
-      @model.errors.on(:title).should == [ 'Company name is a required field' ]
+      expect(@model.errors.on(:title)).to eq [ 'Company name is a required field' ]
     end
   end
 
@@ -28,7 +28,7 @@ describe 'DataMapper::Validations::Fixtures::ServiceCompany' do
     it_behaves_like 'invalid model'
 
     it "has a meaningful error message for own property" do
-      @model.errors.on(:area_of_expertise).should == [ 'Area of expertise must not be blank' ]
+      expect(@model.errors.on(:area_of_expertise)).to eq [ 'Area of expertise must not be blank' ]
     end
   end
 end
@@ -53,7 +53,7 @@ describe 'DataMapper::Validations::Fixtures::ProductCompany' do
     it_behaves_like 'invalid model'
 
     it "has error message from the subclass itself" do
-      @model.errors.on(:title).should include('Product company must have a name')
+      expect(@model.errors.on(:title)).to include('Product company must have a name')
     end
 
     # this may or may not be a desired behavior,
@@ -63,7 +63,7 @@ describe 'DataMapper::Validations::Fixtures::ProductCompany' do
     # TODO: there should be a way to clear validations for a field
     # that subclasses can use
     it "has error message from superclass" do
-      @model.errors.on(:title).should include('Company name is a required field')
+      expect(@model.errors.on(:title)).to include('Company name is a required field')
     end
   end
 
@@ -76,7 +76,7 @@ describe 'DataMapper::Validations::Fixtures::ProductCompany' do
     it_behaves_like 'invalid model'
 
     it "has a meaningful error message for own property" do
-      @model.errors.on(:flagship_product).should == [ 'Flagship product must not be blank' ]
+      expect(@model.errors.on(:flagship_product)).to eq [ 'Flagship product must not be blank' ]
     end
   end
 end

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-require 'spec_helper'
+require_relative '../../spec_helper'
 
 describe 'DataMapper::Validations::ViolationSet' do
   before :all do
@@ -8,7 +8,7 @@ describe 'DataMapper::Validations::ViolationSet' do
 
   describe "initially" do
     it "is empty" do
-      @model.should be_empty
+      expect(@model).to be_empty
     end
   end
 
@@ -21,7 +21,7 @@ describe 'DataMapper::Validations::ViolationSet' do
     end
 
     it "is still empty" do
-      @model.should be_empty
+      expect(@model).to be_empty
     end
   end
 
@@ -32,7 +32,7 @@ describe 'DataMapper::Validations::ViolationSet' do
     end
 
     it "is no longer empty" do
-      @model.should_not be_empty
+      expect(@model).not_to be_empty
     end
   end
 end

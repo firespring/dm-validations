@@ -1,9 +1,9 @@
-require 'spec_helper'
-require 'integration/length_validator/spec_helper'
+require_relative '../../spec_helper'
+require_relative 'spec_helper'
 
-describe "entity with a name shorter than 2 characters", :shared => true do
-  it "has a meaninful error message with length restrictions mentioned" do
-    @model.errors.on(:name).should == [ 'Name must be at least 2 characters long' ]
+shared_examples 'entity with a name shorter than 2 characters' do
+  it 'has a meaningful error message with length restrictions mentioned' do
+    expect(@model.errors.on(:name)).to eq ['Name must be at least 2 characters long']
   end
 end
 

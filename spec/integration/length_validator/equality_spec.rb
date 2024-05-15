@@ -1,14 +1,13 @@
 # encoding: utf-8
 
-require 'spec_helper'
-require 'integration/length_validator/spec_helper'
+require_relative '../../spec_helper'
+require_relative 'spec_helper'
 
-describe "entity with wrong destination MAC address length", :shared => true do
-  it "has error message with range bounds" do
-    @model.errors.on(:destination_mac).should == [ 'Destination mac must be 6 characters long' ]
+shared_examples 'entity with wrong destination MAC address length' do
+  it 'has error message with range bounds' do
+    expect(@model.errors.on(:destination_mac)).to eq ['Destination mac must be 6 characters long']
   end
 end
-
 
 describe 'DataMapper::Validations::Fixtures::EthernetFrame' do
   before :all do
@@ -73,7 +72,7 @@ describe 'DataMapper::Validations::Fixtures::EthernetFrame' do
         @model = DataMapper::Validations::Fixtures::Multibyte.new(
           :name => 'Iñtërnâtiônàlizætiøn'
         )
-        @model.should be_valid
+        expect(@model).to be_valid
       ensure
         $KCODE = original if RUBY_VERSION <= '1.8.6'
       end

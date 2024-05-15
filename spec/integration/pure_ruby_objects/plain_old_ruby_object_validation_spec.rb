@@ -1,4 +1,4 @@
-require 'spec_helper'
+require_relative '../../spec_helper'
 
 module PureRubyObjects
   # notice that it is a pure Ruby class, not a DataMapper resource
@@ -47,8 +47,8 @@ describe 'PureRubyObjects::Country' do
     it_behaves_like 'object invalid in default context'
 
     it "is not valid in encyclopedia context" do
-      @model.should_not be_valid(:adding_to_encyclopedia)
-      @model.should_not be_valid_for_adding_to_encyclopedia
+      expect(@model).not_to be_valid(:adding_to_encyclopedia)
+      expect(@model).not_to be_valid_for_adding_to_encyclopedia
     end
   end
 
@@ -62,14 +62,14 @@ describe 'PureRubyObjects::Country' do
     it_behaves_like 'object invalid in default context'
 
     it "is not valid in encyclopedia context" do
-      @model.should_not be_valid(:adding_to_encyclopedia)
-      @model.should_not be_valid_for_adding_to_encyclopedia
+      expect(@model).not_to be_valid(:adding_to_encyclopedia)
+      expect(@model).not_to be_valid_for_adding_to_encyclopedia
     end
 
     it "has a meaningful error message" do
       # trigger validation => have errors on the object
       @model.valid_for_adding_to_encyclopedia?
-      @model.errors.on(:population).should == ["population really needs to be specified when adding PureRubyObjects::Country to encyclopedia"]
+      expect(@model.errors.on(:population)).to eq ["population really needs to be specified when adding PureRubyObjects::Country to encyclopedia"]
     end
   end
 
@@ -82,18 +82,18 @@ describe 'PureRubyObjects::Country' do
     it_behaves_like 'object valid in default context'
 
     it "is not valid in encyclopedia context" do
-      @model.should_not be_valid(:adding_to_encyclopedia)
-      @model.should_not be_valid_for_adding_to_encyclopedia
+      expect(@model).not_to be_valid(:adding_to_encyclopedia)
+      expect(@model).not_to be_valid_for_adding_to_encyclopedia
     end
   end
 
 
   describe "with name and population information" do
-    it_should_behave_like "object valid in default context"
+    it_behaves_like 'object valid in default context'
 
     it "is valid in encyclopedia context" do
-      @model.should be_valid(:adding_to_encyclopedia)
-      @model.should be_valid_for_adding_to_encyclopedia
+      expect(@model).to be_valid(:adding_to_encyclopedia)
+      expect(@model).to be_valid_for_adding_to_encyclopedia
     end
   end
 
@@ -107,12 +107,12 @@ describe 'PureRubyObjects::Country' do
     it_behaves_like 'object invalid in default context'
 
     it "has errors on name" do
-      @model.errors.on(:name).should_not be_empty
+      expect(@model.errors.on(:name)).not_to be_empty
     end
 
     it "is valid in encyclopedia context" do
-      @model.should be_valid(:adding_to_encyclopedia)
-      @model.should be_valid_for_adding_to_encyclopedia
+      expect(@model).to be_valid(:adding_to_encyclopedia)
+      expect(@model).to be_valid_for_adding_to_encyclopedia
     end
   end
 end

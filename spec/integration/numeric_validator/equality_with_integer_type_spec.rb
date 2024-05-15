@@ -1,5 +1,5 @@
-require 'spec_helper'
-require 'integration/numeric_validator/spec_helper'
+require_relative '../../spec_helper'
+require_relative 'spec_helper'
 
 describe 'DataMapper::Validations::Fixtures::LerneanHydra' do
   before :all do
@@ -35,7 +35,7 @@ describe 'DataMapper::Validations::Fixtures::LerneanHydra' do
     it_behaves_like 'invalid model'
 
     it "has a meaningful error message" do
-      @model.errors.on(:head_count).should == [ 'Lernean hydra is said to have exactly 9 heads' ]
+      expect(@model.errors.on(:head_count)).to eq [ 'Lernean hydra is said to have exactly 9 heads' ]
     end
   end
 end

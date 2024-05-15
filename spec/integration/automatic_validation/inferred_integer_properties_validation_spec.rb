@@ -1,5 +1,5 @@
-require 'spec_helper'
-require 'integration/automatic_validation/spec_helper'
+require_relative '../../spec_helper'
+require_relative 'spec_helper'
 
 describe "A model with an Integer property" do
   before :all do
@@ -14,7 +14,7 @@ describe "A model with an Integer property" do
       @model.id = 1
     end
 
-    it_should_behave_like "valid model"
+    it_behaves_like 'valid model'
   end
 
   describe "assigned a value coercible into an integer" do
@@ -22,7 +22,7 @@ describe "A model with an Integer property" do
       @model.id = 1.0
     end
 
-    it_should_behave_like "valid model"
+    it_behaves_like 'valid model'
   end
 
   describe "assigned a value not coercible into an integer" do
@@ -31,11 +31,11 @@ describe "A model with an Integer property" do
     end
 
     it "is invalid" do
-      @model.should_not be_valid
+      expect(@model).not_to be_valid
     end
 
     it "has a meaningful default error message" do
-      @model.errors.on(:id).should == [ 'Id must be an integer' ]
+      expect(@model.errors.on(:id)).to eq [ 'Id must be an integer' ]
     end
   end
 
@@ -45,11 +45,11 @@ describe "A model with an Integer property" do
     end
 
     it "is invalid" do
-      @model.should_not be_valid
+      expect(@model).not_to be_valid
     end
 
     it "has a meaningful default error message" do
-      @model.errors.on(:id).should == [ 'Id must be greater than or equal to 1' ]
+      expect(@model.errors.on(:id)).to eq [ 'Id must be greater than or equal to 1' ]
     end
   end
 
@@ -59,11 +59,11 @@ describe "A model with an Integer property" do
     end
 
     it "is invalid" do
-      @model.should_not be_valid
+      expect(@model).not_to be_valid
     end
 
     it "has a meaningful default error message" do
-      @model.errors.on(:id).should == [ 'Id must be less than or equal to 10' ]
+      expect(@model.errors.on(:id)).to eq [ 'Id must be less than or equal to 10' ]
     end
   end
 

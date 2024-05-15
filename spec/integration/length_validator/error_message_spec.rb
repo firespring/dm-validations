@@ -1,5 +1,5 @@
-require 'spec_helper'
-require 'integration/length_validator/spec_helper'
+require_relative '../../spec_helper'
+require_relative 'spec_helper'
 
 describe 'DataMapper::Validations::Fixtures::Jabberwock' do
   before :all do
@@ -16,7 +16,7 @@ describe 'DataMapper::Validations::Fixtures::Jabberwock' do
     it_behaves_like 'invalid model'
 
     it "has custom error message" do
-      @model.errors.on(:snickersnack).should == [ 'worble warble' ]
+      expect(@model.errors.on(:snickersnack)).to eq [ 'worble warble' ]
     end
   end
 end

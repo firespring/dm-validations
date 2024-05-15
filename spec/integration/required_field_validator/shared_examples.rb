@@ -5,22 +5,23 @@ describe 'GitOperation' do
     @operation = GitOperation.new
   end
 
-  describe "unnamed SCM operation", :shared => true do
-    before do
-      @operation.name = nil
-      @operation.valid?
-    end
+end
 
-    it "is not valid" do
-      @operation.should_not be_valid
-    end
+shared_examples 'unnamed SCM operation' do
+  before do
+    @operation.name = nil
+    @operation.valid?
+  end
 
-    it "is not valid in default validation context" do
-      @operation.should_not be_valid(:default)
-    end
+  it 'is not valid' do
+    expect(@operation).not_to be_valid
+  end
 
-    it "points to blank name in the error message" do
-      @operation.errors.on(:name).should == [ 'Name must not be blank' ]
-    end
+  it 'is not valid in default validation context' do
+    expect(@operation).not_to be_valid(:default)
+  end
+
+  it 'points to blank name in the error message' do
+    expect(@operation.errors.on(:name)).to eq ['Name must not be blank']
   end
 end

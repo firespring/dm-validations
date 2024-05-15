@@ -1,5 +1,5 @@
-require 'spec_helper'
-require 'integration/numeric_validator/spec_helper'
+require_relative '../../spec_helper'
+require_relative 'spec_helper'
 
 describe 'DataMapper::Validations::Fixtures::BasketballPlayer' do
   before :all  do
@@ -54,8 +54,8 @@ describe 'DataMapper::Validations::Fixtures::BasketballPlayer' do
       @model.height = "height=198.1"
     end
 
-    it "is should not change the value" do
-      @model.height.should == @height
+    it "it does not change the value" do
+      expect(@model.height).to eq @height
     end
 
     it_behaves_like 'invalid model'
@@ -67,8 +67,8 @@ describe 'DataMapper::Validations::Fixtures::BasketballPlayer' do
       @model.height = @height
     end
 
-    it "is should not change the value" do
-      @model.height.should == @height
+    it "it does not change the value" do
+      expect(@model.height).to eq @height
     end
 
     it_behaves_like 'invalid model'
@@ -84,7 +84,7 @@ describe 'DataMapper::Validations::Fixtures::BasketballPlayer' do
     it_behaves_like 'invalid model'
 
     it "has a meaningful error message" do
-      @model.errors.on(:height).should == [ 'Height must be a number' ]
+      expect(@model.errors.on(:height)).to eq [ 'Height must be a number' ]
     end
   end
 end

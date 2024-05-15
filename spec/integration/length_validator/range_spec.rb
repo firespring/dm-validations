@@ -1,5 +1,5 @@
-require 'spec_helper'
-require 'integration/length_validator/spec_helper'
+require_relative '../../spec_helper'
+require_relative 'spec_helper'
 
 describe 'DataMapper::Validations::Fixtures::EthernetFrame' do
   before :all do
@@ -20,7 +20,7 @@ describe 'DataMapper::Validations::Fixtures::EthernetFrame' do
     it_behaves_like 'invalid model'
 
     it "has error message with range bounds" do
-      @model.errors.on(:payload).should == [ 'Payload must be between 46 and 1500 characters long' ]
+      expect(@model.errors.on(:payload)).to eq [ 'Payload must be between 46 and 1500 characters long' ]
     end
   end
 
@@ -34,7 +34,7 @@ describe 'DataMapper::Validations::Fixtures::EthernetFrame' do
     it_behaves_like 'invalid model'
 
     it "has error message with range bounds" do
-      @model.errors.on(:payload).should == [ 'Payload must be between 46 and 1500 characters long' ]
+      expect(@model.errors.on(:payload)).to eq [ 'Payload must be between 46 and 1500 characters long' ]
     end
   end
 
@@ -48,7 +48,7 @@ describe 'DataMapper::Validations::Fixtures::EthernetFrame' do
     it_behaves_like 'invalid model'
 
     it "has error message with range bounds" do
-      @model.errors.on(:payload).should == [ 'Payload must be between 46 and 1500 characters long' ]
+      expect(@model.errors.on(:payload)).to eq [ 'Payload must be between 46 and 1500 characters long' ]
     end
   end
 
@@ -66,7 +66,7 @@ describe 'DataMapper::Validations::Fixtures::EthernetFrame' do
     it_behaves_like 'invalid model'
 
     it "has error message with range bounds" do
-      @model.errors.on(:payload).should == [ 'Payload must be between 46 and 1500 characters long' ]
+      expect(@model.errors.on(:payload)).to eq [ 'Payload must be between 46 and 1500 characters long' ]
     end
   end
 
@@ -81,7 +81,7 @@ describe 'DataMapper::Validations::Fixtures::EthernetFrame' do
     it_behaves_like 'valid model'
 
     it "has blank error message" do
-      @model.errors.on(:payload).should be_nil
+      expect(@model.errors.on(:payload)).to be_nil
     end
   end
 end

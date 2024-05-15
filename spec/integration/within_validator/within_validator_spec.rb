@@ -1,12 +1,12 @@
-require 'spec_helper'
-require 'integration/within_validator/spec_helper'
+require_relative '../../spec_helper'
+require_relative 'spec_helper'
 
 describe 'DataMapper::Validations::Fixtures::PhoneNumber' do
   before :all do
     DataMapper::Validations::Fixtures::PhoneNumber.auto_migrate!
 
     @model = DataMapper::Validations::Fixtures::PhoneNumber.new(:type_of_number => 'cell')
-    @model.should be_valid
+    expect(@model).to be_valid
   end
 
   describe "with type of number set to 'home'" do
@@ -44,7 +44,7 @@ describe 'DataMapper::Validations::Fixtures::PhoneNumber' do
     it_behaves_like 'invalid model'
 
     it "has meaningful error message on invalid property" do
-      @model.errors.on(:type_of_number).should == [ 'Should be one of: home, cell or work' ]
+      expect(@model.errors.on(:type_of_number)).to eq [ 'Should be one of: home, cell or work' ]
     end
   end
 end
@@ -56,7 +56,7 @@ describe 'DataMapper::Validations::Fixtures::MathematicalFunction' do
     DataMapper::Validations::Fixtures::MathematicalFunction.auto_migrate!
 
     @model = DataMapper::Validations::Fixtures::MathematicalFunction.new(:input => 2, :output => -2)
-    @model.should be_valid
+    expect(@model).to be_valid
   end
 
   describe "with input = 0" do
@@ -67,7 +67,7 @@ describe 'DataMapper::Validations::Fixtures::MathematicalFunction' do
     it_behaves_like 'invalid model'
 
     it "notices 'greater than or equal to 1' in the error message" do
-      @model.errors.on(:input).should == [ 'Input must be greater than or equal to 1' ]
+      expect(@model.errors.on(:input)).to eq [ 'Input must be greater than or equal to 1' ]
     end
   end
 
@@ -79,7 +79,7 @@ describe 'DataMapper::Validations::Fixtures::MathematicalFunction' do
     it_behaves_like 'invalid model'
 
     it "notices 'greater than or equal to 1' in the error message" do
-      @model.errors.on(:input).should == [ 'Input must be greater than or equal to 1' ]
+      expect(@model.errors.on(:input)).to eq [ 'Input must be greater than or equal to 1' ]
     end
   end
 
@@ -91,7 +91,7 @@ describe 'DataMapper::Validations::Fixtures::MathematicalFunction' do
     it_behaves_like 'invalid model'
 
     it "notices 'greater than or equal to 1' in the error message" do
-      @model.errors.on(:input).should == [ 'Input must be greater than or equal to 1' ]
+      expect(@model.errors.on(:input)).to eq [ 'Input must be greater than or equal to 1' ]
     end
   end
 
@@ -149,7 +149,7 @@ describe 'DataMapper::Validations::Fixtures::MathematicalFunction' do
     it_behaves_like 'invalid model'
 
     it "uses overriden error message" do
-      @model.errors.on(:output).should == [ 'Negative values or zero only, please' ]
+      expect(@model.errors.on(:output)).to eq [ 'Negative values or zero only, please' ]
     end
   end
 
@@ -162,7 +162,7 @@ describe 'DataMapper::Validations::Fixtures::MathematicalFunction' do
     it_behaves_like 'invalid model'
 
     it "uses overriden error message" do
-      @model.errors.on(:output).should == [ 'Negative values or zero only, please' ]
+      expect(@model.errors.on(:output)).to eq [ 'Negative values or zero only, please' ]
     end
   end
 end

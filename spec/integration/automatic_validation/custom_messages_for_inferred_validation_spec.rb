@@ -1,5 +1,5 @@
-require 'spec_helper'
-require 'integration/automatic_validation/spec_helper'
+require_relative '../../spec_helper'
+require_relative 'spec_helper'
 
 describe 'Inferred validations' do
   it "allow overriding a single error message" do
@@ -14,11 +14,11 @@ describe 'Inferred validations' do
       property :name, String, :required => true, :message => "This boat must have name"
     end
     boat = custom_boat.new
-    boat.should_not be_valid
-    boat.errors.on(:name).should == [ 'This boat must have name' ]
+    expect(boat).not_to be_valid
+    expect(boat.errors.on(:name)).to eq [ 'This boat must have name' ]
   end
 
-  it "should have correct error messages" do
+  it "has correct error messages" do
     custom_boat = Class.new do
       include DataMapper::Resource
 
@@ -36,22 +36,22 @@ describe 'Inferred validations' do
     end
 
     boat = custom_boat.new
-    boat.should_not be_valid
-    boat.errors.on(:name).should == [ 'This boat must have name' ]
+    expect(boat).not_to be_valid
+    expect(boat.errors.on(:name)).to eq [ 'This boat must have name' ]
 
     boat.name = "%%"
-    boat.should_not be_valid
-    boat.errors.on(:name).should == [
+    expect(boat).not_to be_valid
+    expect(boat.errors.on(:name)).to eq [
       'Name must have at least 4 and at most 20 chars',
       'Please use only small letters',
     ]
 
     boat.name = "%%asd"
-    boat.should_not be_valid
-    boat.errors.on(:name).should == [ 'Please use only small letters' ]
+    expect(boat).not_to be_valid
+    expect(boat.errors.on(:name)).to eq [ 'Please use only small letters' ]
 
     boat.name = "superboat"
-    boat.should be_valid
-    boat.errors.on(:name).should be_nil
+    expect(boat).to be_valid
+    expect(boat.errors.on(:name)).to be_nil
   end
 end

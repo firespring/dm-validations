@@ -1,4 +1,4 @@
-require 'spec_helper'
+require_relative '../../../spec_helper'
 require 'data_mapper/validation/resource_extensions'
 
 describe DataMapper::Validation::ResourceExtensions, '#save' do
@@ -19,9 +19,9 @@ describe DataMapper::Validation::ResourceExtensions, '#save' do
   subject { SaveTestResource.new }
 
   it 'returns false when #valid? returns false' do
-    subject.should_receive(:valid?).and_return(false)
+    expect(subject).to receive(:valid?).and_return(false)
 
-    subject.save.should be_false
+    expect(subject.save).to be_false
   end
 
   it 'calls #validation_rules.assert_valid_context with its #default_validation_context' do
@@ -31,23 +31,23 @@ describe DataMapper::Validation::ResourceExtensions, '#save' do
     subject.stub(:save_self)
     subject.stub(:validation_rules => contextual_rule_set)
 
-    subject.should_receive(:default_validation_context).and_return(context_name)
-    contextual_rule_set.should_receive(:assert_valid_context).with(context_name)
+    expect(subject).to receive(:default_validation_context).and_return(context_name)
+    expect(contextual_rule_set).to receive(:assert_valid_context).with(context_name)
 
     subject.save
   end
 
   it 'calls #save_self' do
-    subject.should_receive(:save_self)
+    expect(subject).to receive(:save_self)
 
     subject.save
   end
 
   it 'pushes its default_validation_context on the Context stack' do
     context_name = :default
-    subject.stub(:default_validation_context => context_name)
-    subject.should_receive(:_save) do
-      DataMapper::Validation::Context.current.should be(context_name)
+    allow(subject).to receive(:default_validation_context).and_return(context_name)
+    expect(subject).to receive(:_save) do
+      expect(DataMapper::Validation::Context.current).to be(context_name)
     end
 
     subject.save

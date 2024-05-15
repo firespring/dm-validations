@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-require 'spec_helper'
+require_relative '../../spec_helper'
 
 describe 'DataMapper::Validations::ViolationSet' do
   before :all do
@@ -15,7 +15,7 @@ describe 'DataMapper::Validations::ViolationSet' do
         params << param
       end
 
-      params.should == [ [ 'must have valid format' ], [ "can't be blank" ] ]
+      expect(params).to eq [ [ 'must have valid format' ], [ "can't be blank" ] ]
     end
   end
 
@@ -26,7 +26,7 @@ describe 'DataMapper::Validations::ViolationSet' do
     end
     it "maps error message arrays using provided block" do
       projection = @model.map { |ary| ary }
-      projection.should == [ [ 'must have valid format', 'must belong to a local subnet' ], [ "can't be blank" ] ]
+      expect(projection).to eq [ [ 'must have valid format', 'must belong to a local subnet' ], [ "can't be blank" ] ]
     end
   end
 end

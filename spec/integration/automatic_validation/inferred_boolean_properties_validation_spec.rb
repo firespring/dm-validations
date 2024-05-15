@@ -1,5 +1,5 @@
-require 'spec_helper'
-require 'integration/automatic_validation/spec_helper'
+require_relative '../../spec_helper'
+require_relative 'spec_helper'
 
 describe "A model with a Boolean property" do
   before :all do
@@ -11,7 +11,7 @@ describe "A model with a Boolean property" do
       @model.bool = true
     end
 
-    it_should_behave_like "valid model"
+    it_behaves_like 'valid model'
   end
 
   describe "assigned a false" do
@@ -19,7 +19,7 @@ describe "A model with a Boolean property" do
       @model.bool = false
     end
 
-    it_should_behave_like "valid model"
+    it_behaves_like 'valid model'
   end
 
   describe "assigned a nil" do
@@ -27,7 +27,7 @@ describe "A model with a Boolean property" do
       @model.bool = nil
     end
 
-    it_should_behave_like "valid model"
+    it_behaves_like 'valid model'
   end
 end
 
@@ -41,7 +41,7 @@ describe "A model with a required Boolean property" do
       @model.bool = true
     end
 
-    it_should_behave_like "valid model"
+    it_behaves_like 'valid model'
   end
 
   describe "assigned a false" do
@@ -49,7 +49,7 @@ describe "A model with a required Boolean property" do
       @model.bool = false
     end
 
-    it_should_behave_like "valid model"
+    it_behaves_like 'valid model'
   end
 
   describe "assigned a nil" do
@@ -57,10 +57,10 @@ describe "A model with a required Boolean property" do
       @model.bool = nil
     end
 
-    it_should_behave_like "invalid model"
+    it_behaves_like 'invalid model'
 
     it "has a meaningful error message" do
-      @model.errors.on(:bool).should == [ 'Bool must not be nil' ]
+      expect(@model.errors.on(:bool)).to eq [ 'Bool must not be nil' ]
     end
   end
 end
@@ -75,7 +75,7 @@ describe "A model with a required paranoid Boolean property" do
       @model.bool = true
     end
 
-    it_should_behave_like "valid model"
+    it_behaves_like 'valid model'
   end
 
   describe "assigned a false" do
@@ -83,7 +83,7 @@ describe "A model with a required paranoid Boolean property" do
       @model.bool = false
     end
 
-    it_should_behave_like "valid model"
+    it_behaves_like 'valid model'
   end
 
   describe "assigned a nil" do
@@ -91,10 +91,10 @@ describe "A model with a required paranoid Boolean property" do
       @model.bool = nil
     end
 
-    it_should_behave_like "invalid model"
+    it_behaves_like 'invalid model'
 
     it "has a meaningful error message" do
-      @model.errors.on(:bool).should == [ 'Bool must not be nil' ]
+      expect(@model.errors.on(:bool)).to eq [ 'Bool must not be nil' ]
     end
   end
 end
