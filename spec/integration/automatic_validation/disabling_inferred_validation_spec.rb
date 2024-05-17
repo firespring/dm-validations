@@ -1,5 +1,5 @@
-require 'spec_helper'
-require 'integration/automatic_validation/spec_helper'
+require_relative '../../spec_helper'
+require_relative 'spec_helper'
 
 describe "A class with inferred validations disabled for all properties with an option" do
   before :all do
@@ -19,7 +19,7 @@ describe "A class with inferred validations disabled for all properties with an 
   end
 
   describe "when instantiated w/o any attributes" do
-    it_should_behave_like "valid model"
+    it_behaves_like 'valid model'
   end
 end
 
@@ -44,6 +44,6 @@ describe "A class with inferred validations disabled for all properties with a b
   end
 
   describe "when instantiated w/o any attributes" do
-    it_should_behave_like "valid model"
+    it_behaves_like 'valid model'
   end
 end

@@ -1,5 +1,5 @@
-require 'spec_helper'
-require 'integration/format_validator/spec_helper'
+require_relative '../../spec_helper'
+require_relative 'spec_helper'
 
 describe 'DataMapper::Validations::Fixtures::BillOfLading' do
   before :all do
@@ -15,7 +15,7 @@ describe 'DataMapper::Validations::Fixtures::BillOfLading' do
       @model = DataMapper::Validations::Fixtures::BillOfLading.new(valid_attributes.merge(:code => '123456'))
     end
 
-    it_should_behave_like 'valid model'
+    it_behaves_like 'valid model'
   end
 
 
@@ -24,10 +24,10 @@ describe 'DataMapper::Validations::Fixtures::BillOfLading' do
       @model = DataMapper::Validations::Fixtures::BillOfLading.new(valid_attributes.merge(:code => '12'))
     end
 
-    it_should_behave_like 'invalid model'
+    it_behaves_like 'invalid model'
 
     it "has a meaningful error message" do
-      @model.errors.on(:code).should  == [ 'Code format is invalid' ]
+      expect(@model.errors.on(:code)).to eq [ 'Code format is invalid' ]
     end
   end
 end

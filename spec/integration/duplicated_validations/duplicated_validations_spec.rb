@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-require 'spec_helper'
-require 'integration/duplicated_validations/spec_helper'
+require_relative '../../spec_helper'
+require_relative 'spec_helper'
 
 describe 'DataMapper::Validations::Fixtures::Page' do
   before :all do
@@ -15,10 +15,10 @@ describe 'DataMapper::Validations::Fixtures::Page' do
       @model.body = nil
     end
 
-    it_should_behave_like "invalid model"
+    it_behaves_like 'invalid model'
 
     it "does not have duplicated error messages" do
-      @model.errors.on(:body).should == ["Body must not be blank"]
+      expect(@model.errors.on(:body)).to eq ["Body must not be blank"]
     end
   end
 end

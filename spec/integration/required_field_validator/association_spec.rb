@@ -1,5 +1,5 @@
-require 'spec_helper'
-require 'integration/required_field_validator/spec_helper'
+require_relative '../../spec_helper'
+require_relative 'spec_helper'
 
 describe 'required_field_validator/association_spec' do
 
@@ -50,18 +50,18 @@ describe 'required_field_validator/association_spec' do
       end
 
       it 'is not valid' do
-        @album.should_not be_valid
+        expect(@album).not_to be_valid
       end
 
       it 'has a meaninful error messages on association key property' do
         @album.valid?
-        @album.errors.on(:artist).should == [ 'Artist must not be blank' ]
+        expect(@album.errors.on(:artist)).to eq [ 'Artist must not be blank' ]
       end
     end
 
     describe 'with specified artist and name' do
       it 'is valid' do
-        @album.should be_valid
+        expect(@album).to be_valid
       end
     end
   end

@@ -1,7 +1,7 @@
-require 'spec_helper'
+require_relative '../../spec_helper'
 
 describe 'DataMapper::Validations::Rule::Within' do
-  it 'should allow Sets to be passed to the :set option' do
+  it 'allows Sets to be passed to the :set option' do
     types = Set.new(%w(home mobile business))
 
     @model = Class.new do
@@ -18,6 +18,6 @@ describe 'DataMapper::Validations::Rule::Within' do
     validator = DataMapper::Validations::Rule::Within.new(:name, :set => types)
     validator.call(@model)
 
-    @model.errors.should_not be_empty
+    expect(@model.errors).not_to be_empty
   end
 end

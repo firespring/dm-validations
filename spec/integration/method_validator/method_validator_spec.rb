@@ -1,67 +1,63 @@
-require 'spec_helper'
-require 'integration/method_validator/spec_helper'
+require_relative '../../spec_helper'
+require_relative 'spec_helper'
 
-describe 'a good fit for DSLs', :shared => true do
+shared_examples 'a good fit for DSLs' do
   it 'is a good fit for DSLs' do
-    @model.should be_valid_for_implementing_a_dsl
+    expect(@model).to be_valid_for_implementing_a_dsl
   end
 
   it 'is totally fine for DSLs' do
-    @model.ensure_appropriate_for_dsls.should be(true)
+    expect(@model.ensure_appropriate_for_dsls).to be(true)
   end
 end
 
-describe 'a poor candidate for DSLs', :shared => true do
+shared_examples 'a poor candidate for DSLs' do
   it 'is a poor candidate for DSLs' do
-    @model.should_not be_valid_for_implementing_a_dsl
+    expect(@model).not_to be_valid_for_implementing_a_dsl
   end
 
   it 'is unappropriate for DSLs' do
-    @model.ensure_appropriate_for_dsls.first.should be(false)
+    expect(@model.ensure_appropriate_for_dsls.first).to be(false)
   end
 
   it 'has a (more or less) meaningful error message' do
-    @model.errors.on(:ensure_appropriate_for_dsls).should == [ 'may not be so good for domain specific languages' ]
+    expect(@model.errors.on(:ensure_appropriate_for_dsls)).to eq ['may not be so good for domain specific languages']
   end
 
   it 'has a violation type' do
-    @model.errors[:ensure_appropriate_for_dsls].map(&:type).should == [:unsatisfied_condition]
+    expect(@model.errors[:ensure_appropriate_for_dsls].map(&:type)).to eq [:unsatisfied_condition]
   end
 end
 
-
-describe 'a good fit for game engine core', :shared => true do
+shared_examples 'a good fit for game engine core' do
   it 'is a good fit for game engine core' do
-    @model.should be_valid_for_implementing_a_game_engine_core
+    expect(@model).to be_valid_for_implementing_a_game_engine_core
   end
 
   it 'is appropriate for system programming' do
-    @model.ensure_appropriate_for_system_programming.should be(true)
+    expect(@model.ensure_appropriate_for_system_programming).to be(true)
   end
 end
 
-describe 'a poor candidate for game engine core', :shared => true do
+shared_examples 'a poor candidate for game engine core' do
   it 'is a poor candidate for game engine core' do
-    @model.should_not be_valid_for_implementing_a_game_engine_core
+    expect(@model).not_to be_valid_for_implementing_a_game_engine_core
   end
 end
 
-
-
-describe 'a good fit for kernel hacking', :shared => true do
+shared_examples 'a good fit for kernel hacking' do
   it 'is a good fit for kernel hacking' do
-    @model.should be_valid_for_hacking_on_the_kernel
+    expect(@model).to be_valid_for_hacking_on_the_kernel
   end
 
   it 'is appropriate for system programming' do
-    @model.ensure_appropriate_for_system_programming.should be(true)
+    expect(@model.ensure_appropriate_for_system_programming).to be(true)
   end
 end
 
-
-describe 'a poor candidate for kernel hacking', :shared => true do
+shared_examples 'a poor candidate for kernel hacking' do
   it 'is not a good fit for kernel hacking' do
-    @model.should_not be_valid_for_hacking_on_the_kernel
+    expect(@model).not_to be_valid_for_hacking_on_the_kernel
   end
 end
 
@@ -91,11 +87,11 @@ describe 'C' do
                                                                        )
   end
 
-  it_should_behave_like 'a good fit for kernel hacking'
+  it_behaves_like 'a good fit for kernel hacking'
 
-  it_should_behave_like 'a good fit for game engine core'
+  it_behaves_like 'a good fit for game engine core'
 
-  it_should_behave_like 'a poor candidate for DSLs'
+  it_behaves_like 'a poor candidate for DSLs'
 end
 
 
@@ -114,16 +110,16 @@ describe 'C++' do
                                                                        )
   end
 
-  it_should_behave_like 'a poor candidate for kernel hacking'
+  it_behaves_like 'a poor candidate for kernel hacking'
 
-  it_should_behave_like 'a good fit for game engine core'
+  it_behaves_like 'a good fit for game engine core'
 
-  it_should_behave_like 'a poor candidate for DSLs'
+  it_behaves_like 'a poor candidate for DSLs'
 
   it 'is not approved by Linus' do
     @model.valid?(:hacking_on_the_kernel)
-    @model.errors.on(:ensure_approved_by_linus_himself).should_not be_empty
-    @model.errors[:ensure_approved_by_linus_himself].map(&:type).should == [:unapproved_by_linus]
+    expect(@model.errors.on(:ensure_approved_by_linus_himself)).not_to be_empty
+    expect(@model.errors[:ensure_approved_by_linus_himself].map(&:type)).to eq [:unapproved_by_linus]
   end
 end
 
@@ -143,15 +139,15 @@ describe 'Ruby' do
                                                                        )
   end
 
-  it_should_behave_like 'a good fit for DSLs'
+  it_behaves_like 'a good fit for DSLs'
 
-  it_should_behave_like 'a poor candidate for kernel hacking'
+  it_behaves_like 'a poor candidate for kernel hacking'
 
-  it_should_behave_like 'a poor candidate for game engine core'
+  it_behaves_like 'a poor candidate for game engine core'
 
   it 'has a (more or less) meaningful error message' do
     @model.valid?(:doing_system_programming)
-    @model.errors.on(:ensure_appropriate_for_system_programming).should == [ 'try something that is closer to the metal' ]
+    expect(@model.errors.on(:ensure_appropriate_for_system_programming)).to eq [ 'try something that is closer to the metal' ]
   end
 end
 
@@ -170,15 +166,15 @@ describe 'Scala' do
                                                                        )
   end
 
-  it_should_behave_like 'a good fit for DSLs'
+  it_behaves_like 'a good fit for DSLs'
 
-  it_should_behave_like 'a poor candidate for kernel hacking'
+  it_behaves_like 'a poor candidate for kernel hacking'
 
-  it_should_behave_like 'a poor candidate for game engine core'
+  it_behaves_like 'a poor candidate for game engine core'
 
   it 'has a (more or less) meaningful error message' do
     @model.valid?(:doing_system_programming)
-    @model.errors.on(:ensure_appropriate_for_system_programming).should == [ 'try something that is closer to the metal' ]
+    expect(@model.errors.on(:ensure_appropriate_for_system_programming)).to eq [ 'try something that is closer to the metal' ]
   end
 end
 
@@ -203,15 +199,15 @@ describe 'Haskell' do
     )
   end
 
-  it_should_behave_like 'a good fit for DSLs'
+  it_behaves_like 'a good fit for DSLs'
 
-  it_should_behave_like 'a poor candidate for kernel hacking'
+  it_behaves_like 'a poor candidate for kernel hacking'
 
-  it_should_behave_like 'a poor candidate for game engine core'
+  it_behaves_like 'a poor candidate for game engine core'
 
   it 'has a (more or less) meaningful error message' do
     @model.valid?(:doing_system_programming)
-    @model.errors.on(:ensure_appropriate_for_system_programming).should == [ 'try something that is closer to the metal' ]
+    expect(@model.errors.on(:ensure_appropriate_for_system_programming)).to eq [ 'try something that is closer to the metal' ]
   end
 end
 
@@ -229,7 +225,7 @@ describe 'DataMapper::Validations::Fixtures::Event' do
       @model.ends_at   = DateTime.new(2009, 4, 1, 23, 59, 59)
     end
 
-    it_should_behave_like 'valid model'
+    it_behaves_like 'valid model'
   end
 
   describe 'with start time after end time' do
@@ -238,10 +234,10 @@ describe 'DataMapper::Validations::Fixtures::Event' do
       @model.ends_at   = DateTime.new(2009, 4, 1, 00, 00, 01)
     end
 
-    it_should_behave_like 'invalid model'
+    it_behaves_like 'invalid model'
 
     it 'uses custom error message for property starts_at' do
-      @model.errors.on(:starts_at).should == [ 'Start time cannot be after end time' ]
+      expect(@model.errors.on(:starts_at)).to eq [ 'Start time cannot be after end time' ]
     end
   end
 end

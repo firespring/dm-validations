@@ -4,4 +4,4 @@
 # DataMapper developers feels strongly against foobars in the spec
 # suite
 
-require 'integration/required_field_validator/shared_examples'
+require_relative 'shared_examples'

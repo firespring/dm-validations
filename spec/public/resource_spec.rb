@@ -1,4 +1,4 @@
-require 'spec_helper'
+require_relative '../spec_helper'
 
 describe 'DataMapper::Resource' do
   before :all do
@@ -13,8 +13,8 @@ describe 'DataMapper::Resource' do
         @response = @resource.update(:code => 'a' * 10)
       end
 
-      it 'should return true' do
-        @response.should be(true)
+      it 'returns true' do
+        expect(@response).to be(true)
       end
     end
 
@@ -23,12 +23,12 @@ describe 'DataMapper::Resource' do
         @response = @resource.update(:code => 'a' * 11)
       end
 
-      it 'should return false' do
-        @response.should be(false)
+      it 'returns false' do
+        expect(@response).to be(false)
       end
 
-      it 'should set errors' do
-        @resource.errors.to_a.should == [ [ 'Code must be at most 10 characters long' ] ]
+      it 'sets errors' do
+        expect(@resource.errors.to_a).to eq [ [ 'Code must be at most 10 characters long' ] ]
       end
     end
 
@@ -48,19 +48,19 @@ describe 'DataMapper::Resource' do
         }
 
         # create a record that will be a dupe when User#update is executed below
-        DataMapper::Validations::Fixtures::User.create(attributes).should be_saved
+        expect(DataMapper::Validations::Fixtures::User.create(attributes)).to be_saved
 
         @resource = DataMapper::Validations::Fixtures::User.create(attributes.merge(:user_name => 'other'))
 
         @response = @resource.update(attributes, :signing_up_for_department_account)
       end
 
-      it 'should return false' do
-        @response.should be(false)
+      it 'returns false' do
+        expect(@response).to be(false)
       end
 
-      it 'should set errors' do
-        @resource.errors.to_a.should == [ [ 'User name is already taken' ] ]
+      it 'sets errors' do
+        expect(@resource.errors.to_a).to eq [ [ 'User name is already taken' ] ]
       end
     end
   end
@@ -72,16 +72,16 @@ describe 'DataMapper::Resource' do
     end
 
     describe 'on a new, non-dirty resource' do
-      it 'should call valid? once' do
+      it 'calls valid? once' do
         blank = DataMapper::Validations::Fixtures::Barcode.new
         blank.save
-        blank.valid_hook_call_count.should == 1
+        expect(blank.valid_hook_call_count).to eq 1
       end
     end
 
     describe 'on a new, dirty resource' do
-      it 'should call valid? once' do
-        @resource.valid_hook_call_count.should == 1
+      it 'calls valid? once' do
+        expect(@resource.valid_hook_call_count).to eq 1
       end
     end
 
@@ -92,8 +92,8 @@ describe 'DataMapper::Resource' do
         @resource.save
       end
 
-      it 'should not call valid?' do
-        @resource.valid_hook_call_count.to_i.should == 0
+      it 'does not call valid?' do
+        expect(@resource.valid_hook_call_count.to_i).to eq 0
       end
     end
 
@@ -105,8 +105,8 @@ describe 'DataMapper::Resource' do
         @resource.save
       end
 
-      it 'should call valid? once' do
-        @resource.valid_hook_call_count.should == 1
+      it 'calls valid? once' do
+        expect(@resource.valid_hook_call_count).to eq 1
       end
     end
   end

@@ -1,5 +1,5 @@
-require 'spec_helper'
-require 'integration/automatic_validation/spec_helper'
+require_relative '../../spec_helper'
+require_relative 'spec_helper'
 
 describe 'uniqueness' do
   describe 'single attribute' do
@@ -19,7 +19,7 @@ describe 'uniqueness' do
     end
 
     it 'validates' do
-      @new.should_not be_valid
+      expect(@new).not_to be_valid
     end
   end
 
@@ -40,9 +40,9 @@ describe 'uniqueness' do
     end
 
     it 'validates uniquness' do
-      lambda {
-        @new.should_not be_valid
-      }.should raise_error(ArgumentError)
+      expect {
+        expect(@new).not_to be_valid
+      }.to raise_error(ArgumentError)
     end
   end
 end

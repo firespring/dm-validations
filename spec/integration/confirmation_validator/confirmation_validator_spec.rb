@@ -1,16 +1,16 @@
-require 'spec_helper'
-require 'integration/confirmation_validator/spec_helper'
+require_relative '../../spec_helper'
+require_relative 'spec_helper'
 
-describe "reservation with mismatched person name", :shared => true do
-  it "has meaningful error message" do
-    @model.errors.on(:person_name).should == [ 'Person name does not match the confirmation' ]
+shared_examples 'reservation with mismatched person name' do
+  it 'has meaningful error message' do
+    expect(@model.errors.on(:person_name)).to eq ['Person name does not match the confirmation']
   end
 end
 
-describe "reservation with mismatched seats number", :shared => true do
-  it "has meaningful error message" do
+shared_examples 'reservation with mismatched seats number' do
+  it 'has meaningful error message' do
     # Proc gets expanded here
-    @model.errors.on(:number_of_seats).should == [ 'Reservation requires confirmation for number_of_seats' ]
+    expect(@model.errors.on(:number_of_seats)).to eq ['Reservation requires confirmation for number_of_seats']
   end
 end
 
@@ -23,7 +23,7 @@ describe 'DataMapper::Validations::Fixtures::Reservation' do
                                                              :person_name_confirmation     => "Tyler Durden",
                                                              :number_of_seats              => 2,
                                                              :seats_confirmation           => 2)
-    @model.should be_valid
+    expect(@model).to be_valid
   end
 
   describe "with matching person name and confirmation" do
@@ -31,8 +31,8 @@ describe 'DataMapper::Validations::Fixtures::Reservation' do
       @model.person_name = "mismatch"
     end
 
-    it_should_behave_like "invalid model"
-    it_should_behave_like "reservation with mismatched person name"
+    it_behaves_like 'invalid model'
+    it_behaves_like 'reservation with mismatched person name'
   end
 
 
@@ -41,8 +41,8 @@ describe 'DataMapper::Validations::Fixtures::Reservation' do
       @model.person_name = ""
     end
 
-    it_should_behave_like "invalid model"
-    it_should_behave_like "reservation with mismatched person name"
+    it_behaves_like 'invalid model'
+    it_behaves_like 'reservation with mismatched person name'
   end
 
 
@@ -51,8 +51,8 @@ describe 'DataMapper::Validations::Fixtures::Reservation' do
       @model.person_name = nil
     end
 
-    it_should_behave_like "invalid model"
-    it_should_behave_like "reservation with mismatched person name"
+    it_behaves_like 'invalid model'
+    it_behaves_like 'reservation with mismatched person name'
   end
 
 
@@ -61,8 +61,8 @@ describe 'DataMapper::Validations::Fixtures::Reservation' do
       @model.number_of_seats  = -1
     end
 
-    it_should_behave_like "invalid model"
-    it_should_behave_like "reservation with mismatched seats number"
+    it_behaves_like 'invalid model'
+    it_behaves_like 'reservation with mismatched seats number'
   end
 
 
@@ -71,6 +71,6 @@ describe 'DataMapper::Validations::Fixtures::Reservation' do
       @model.number_of_seats = nil
     end
 
-    it_should_behave_like "valid model"
+    it_behaves_like 'valid model'
   end
 end

@@ -1,9 +1,9 @@
-require 'spec_helper'
-require 'integration/length_validator/spec_helper'
+require_relative '../../spec_helper'
+require_relative 'spec_helper'
 
-describe "barcode with invalid code length", :shared => true do
-  it "has a meaninful error message with length restrictions mentioned" do
-    @model.errors.on(:code).should == [ 'Code must be at most 10 characters long' ]
+shared_examples 'barcode with invalid code length' do
+  it 'has a meaningful error message with length restrictions mentioned' do
+    expect(@model.errors.on(:code)).to eq ['Code must be at most 10 characters long']
   end
 end
 
@@ -14,7 +14,7 @@ describe 'DataMapper::Validations::Fixtures::Barcode' do
     @model = DataMapper::Validations::Fixtures::Barcode.valid_instance
   end
 
-  it_should_behave_like "valid model"
+  it_behaves_like 'valid model'
 
   describe "with a 17 characters long code" do
     before :all do
@@ -22,9 +22,8 @@ describe 'DataMapper::Validations::Fixtures::Barcode' do
       @model.valid?
     end
 
-    it_should_behave_like "invalid model"
-
-    it_should_behave_like "barcode with invalid code length"
+    it_behaves_like 'invalid model'
+    it_behaves_like 'barcode with invalid code length'
   end
 
   describe "with a 7 characters long code" do
@@ -33,7 +32,7 @@ describe 'DataMapper::Validations::Fixtures::Barcode' do
       @model.valid?
     end
 
-    it_should_behave_like "valid model"
+    it_behaves_like 'valid model'
   end
 
   describe "with an 11 characters long code" do
@@ -42,8 +41,7 @@ describe 'DataMapper::Validations::Fixtures::Barcode' do
       @model.valid?
     end
 
-    it_should_behave_like "invalid model"
-
-    it_should_behave_like "barcode with invalid code length"
+    it_behaves_like 'invalid model'
+    it_behaves_like 'barcode with invalid code length'
   end
 end

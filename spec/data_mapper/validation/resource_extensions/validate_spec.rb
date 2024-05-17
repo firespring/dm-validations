@@ -1,4 +1,4 @@
-require 'spec_helper'
+require_relative '../../../spec_helper'
 require 'data_mapper/validation/resource_extensions'
 
 describe DataMapper::Validation::ResourceExtensions, '#validate' do
@@ -43,7 +43,7 @@ describe DataMapper::Validation::ResourceExtensions, '#validate' do
     let(:children) { [ Child.new, Child.new ] }
 
     it 'does not append errors' do
-      subject.validate.errors.should be_empty
+      expect(subject.validate.errors).to be_empty
     end
   end
 
@@ -54,15 +54,15 @@ describe DataMapper::Validation::ResourceExtensions, '#validate' do
     before { pending }
 
     it 'does append violations' do
-      subject.validate.errors.should_not be_empty
+      expect(subject.validate.errors).not_to be_empty
     end
 
     it 'appends a violation on :parent' do
-      subject.validate.errors.on(:parent).should_not be_empty
+      expect(subject.validate.errors.on(:parent)).not_to be_empty
     end
 
     it 'appends a single violation on :parent' do
-      subject.validate.errors.on(:parent).size.should eql(1)
+      expect(subject.validate.errors.on(:parent).size).to eql(1)
     end
   end
 
@@ -73,15 +73,15 @@ describe DataMapper::Validation::ResourceExtensions, '#validate' do
     before { pending }
 
     it 'does append violations' do
-      subject.validate.errors.should_not be_empty
+      expect(subject.validate.errors).not_to be_empty
     end
 
     it 'appends a violation on :children' do
-      subject.validate.errors.on(:children).should_not be_empty
+      expect(subject.validate.errors.on(:children)).not_to be_empty
     end
 
     it 'appends a single violation on :children' do
-      subject.validate.errors.on(:children).size.should eql(1)
+      expect(subject.validate.errors.on(:children).size).to eql(1)
     end
   end
 
@@ -92,11 +92,11 @@ describe DataMapper::Validation::ResourceExtensions, '#validate' do
     before { pending }
 
     it 'does append violations' do
-      subject.validate.errors.should_not be_empty
+      expect(subject.validate.errors).not_to be_empty
     end
 
     it 'appends a single violation on :children' do
-      subject.validate.errors.on(:children).size.should eql(1)
+      expect(subject.validate.errors.on(:children).size).to eql(1)
     end
   end
 

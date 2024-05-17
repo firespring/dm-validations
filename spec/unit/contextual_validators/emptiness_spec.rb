@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-require 'spec_helper'
-require 'unit/contextual_validators/spec_helper'
+require_relative '../../spec_helper'
+require_relative 'spec_helper'
 
 describe 'DataMapper::Validations::ContextualRuleSet' do
   before :all do
@@ -9,7 +9,7 @@ describe 'DataMapper::Validations::ContextualRuleSet' do
 
   describe "initially" do
     it "is empty" do
-      @validators.should be_empty
+      expect(@validators).to be_empty
     end
   end
 
@@ -20,7 +20,7 @@ describe 'DataMapper::Validations::ContextualRuleSet' do
     end
 
     it "initializes list of validators for referred context" do
-      @validators.context(:create).should be_empty
+      expect(@validators.context(:create)).to be_empty
     end
   end
 
@@ -31,7 +31,7 @@ describe 'DataMapper::Validations::ContextualRuleSet' do
     end
 
     it "is no longer empty" do
-      @validators.should_not be_empty
+      expect(@validators).not_to be_empty
     end
   end
 
@@ -39,12 +39,12 @@ describe 'DataMapper::Validations::ContextualRuleSet' do
   describe "when cleared" do
     before :all do
       @validators.context(:default) << DataMapper::Validations::Rule::Presence.new(:toc, :when => [:publishing])
-      @validators.should_not be_empty
+      expect(@validators).not_to be_empty
       @validators.clear
     end
 
     it "becomes empty again" do
-      @validators.should be_empty
+      expect(@validators).to be_empty
     end
   end
 end
