@@ -54,4 +54,5 @@ end
 group :development do
   gem 'rake'
   gem 'rspec'
+  gem 'simplecov'
 end
