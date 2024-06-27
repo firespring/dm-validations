@@ -13,9 +13,8 @@ class Hash
   end
 end
 
-SPEC_ROOT = Pathname(__FILE__).dirname
-Pathname.glob((SPEC_ROOT + 'fixtures/**/*.rb').to_s).each { |file| require file }
-Pathname.glob((SPEC_ROOT + 'integration/shared/**/*.rb').to_s).each { |file| require file }
+Dir["#{File.realpath(File.dirname(__FILE__))}/fixtures/**/*.rb"].sort.each { |file| require file }
+Dir["#{File.realpath(File.dirname(__FILE__))}/integration/shared/**/*.rb"].sort.each { |file| require file }
 
 DataMapper::Spec.setup
 DataMapper.finalize
