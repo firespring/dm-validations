@@ -11,7 +11,7 @@ Gem::Specification.new do |gem|
   gem.files = `git ls-files`.split("\n")
   gem.extra_rdoc_files = %w(LICENSE README.rdoc)
 
-  gem.name = 'dm-validations'
+  gem.name = 'sbf-dm-validations'
   gem.require_paths = ['lib']
   gem.version = DataMapper::Validation::VERSION
   gem.required_ruby_version = '>= 2.7.8'
