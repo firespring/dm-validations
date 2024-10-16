@@ -1,8 +1,8 @@
 require File.expand_path('../lib/data_mapper/validation/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.authors = ['Guy van den Berg', 'Emmanuel Gomez']
-  gem.email = ['emmanuel.gomez@gmail.com']
+  gem.authors =  ['opensource_firespring']
+  gem.email = ['opensource@firespring.com']
   gem.summary = 'Library for performing validations on DataMapper resources and plain Ruby objects'
   gem.description = 'This is a DataMapper plugin that provides validations for DataMapper model classes.'
   gem.homepage = 'https://datamapper.org'
